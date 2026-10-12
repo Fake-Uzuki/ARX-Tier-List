@@ -1,7 +1,7 @@
 /**
  * ARX Clan - Minecraft PvP Tier List Web Application
  * Reference: MCTiers.it Architecture & Standards
- * Features: Multi-view rendering, live search, 3D/custom skin rendering from skin PNGs, sound fx, clan editor
+ * Features: 3D Skinview3d integration with Alex (slim) body type, full outer layers, audio fx, live search
  */
 
 (function () {
@@ -12,18 +12,16 @@
   let activeFilter = 'ALL';
   let searchQuery = '';
   let soundEnabled = true;
-  let activeModalPlayer = null;
+  let activeViewer = null;
 
-  // Local copy of players that can be manipulated in the simulator/editor
+  // Local copy of players
   let playersList = JSON.parse(JSON.stringify(window.ARX_TIER_CONFIG.players));
 
   // ==========================================================================
   // MINECRAFT SKIN FORMAT CANVAS RENDERER
-  // Loads standard 64x64 / 64x32 Minecraft skin PNGs and renders head & body
+  // Extracts crisp 2D head avatar (face + hat layer) from skin PNG
   // ==========================================================================
   const MinecraftSkinRenderer = {
-    headCache: {},
-    bodyCache: {},
     imgCache: {},
 
     loadSkinImage(src, callback) {
@@ -42,7 +40,6 @@
       img.src = src;
     },
 
-    // Extracts 2D head avatar (face + hat/helmet overlay) from skin PNG
     renderHead(skinSrc, targetCanvas, size = 64) {
       if (!targetCanvas) return;
       this.loadSkinImage(skinSrc, (img) => {
@@ -55,66 +52,8 @@
 
         // Base face: sx=8, sy=8, sw=8, sh=8
         ctx.drawImage(img, 8, 8, 8, 8, 0, 0, size, size);
-        // Hat / Hair overlay: sx=40, sy=8, sw=8, sh=8
+        // Outer Hat / Hair overlay: sx=40, sy=8, sw=8, sh=8
         ctx.drawImage(img, 40, 8, 8, 8, 0, 0, size, size);
-      });
-    },
-
-    // Renders full front Minecraft character model from skin PNG
-    renderFullBody(skinSrc, targetCanvas, width = 160, height = 240) {
-      if (!targetCanvas) return;
-      this.loadSkinImage(skinSrc, (img) => {
-        if (!img) return;
-        targetCanvas.width = width;
-        targetCanvas.height = height;
-        const ctx = targetCanvas.getContext('2d');
-        ctx.imageSmoothingEnabled = false;
-        ctx.clearRect(0, 0, width, height);
-
-        // Minecraft character is 16 units wide x 32 units tall
-        const u = Math.floor(Math.min(width / 16, height / 32));
-        const offsetX = Math.floor((width - 16 * u) / 2);
-        const offsetY = Math.floor((height - 32 * u) / 2);
-
-        // 1. Head (base + hat)
-        ctx.drawImage(img, 8, 8, 8, 8, offsetX + 4 * u, offsetY + 0, 8 * u, 8 * u);
-        ctx.drawImage(img, 40, 8, 8, 8, offsetX + 4 * u, offsetY + 0, 8 * u, 8 * u);
-
-        // 2. Torso (base + jacket)
-        ctx.drawImage(img, 20, 20, 8, 12, offsetX + 4 * u, offsetY + 8 * u, 8 * u, 12 * u);
-        ctx.drawImage(img, 20, 36, 8, 12, offsetX + 4 * u, offsetY + 8 * u, 8 * u, 12 * u);
-
-        // 3. Right Arm (Viewer Left) (base + sleeve)
-        ctx.drawImage(img, 44, 20, 4, 12, offsetX + 0, offsetY + 8 * u, 4 * u, 12 * u);
-        ctx.drawImage(img, 44, 36, 4, 12, offsetX + 0, offsetY + 8 * u, 4 * u, 12 * u);
-
-        // 4. Left Arm (Viewer Right) (base + sleeve)
-        if (img.height >= 64) {
-          ctx.drawImage(img, 36, 52, 4, 12, offsetX + 12 * u, offsetY + 8 * u, 4 * u, 12 * u);
-          ctx.drawImage(img, 52, 52, 4, 12, offsetX + 12 * u, offsetY + 8 * u, 4 * u, 12 * u);
-        } else {
-          // Mirror right arm for legacy skins
-          ctx.save();
-          ctx.scale(-1, 1);
-          ctx.drawImage(img, 44, 20, 4, 12, -(offsetX + 16 * u), offsetY + 8 * u, 4 * u, 12 * u);
-          ctx.restore();
-        }
-
-        // 5. Right Leg (Viewer Left) (base + pants)
-        ctx.drawImage(img, 4, 20, 4, 12, offsetX + 4 * u, offsetY + 20 * u, 4 * u, 12 * u);
-        ctx.drawImage(img, 4, 36, 4, 12, offsetX + 4 * u, offsetY + 20 * u, 4 * u, 12 * u);
-
-        // 6. Left Leg (Viewer Right) (base + pants)
-        if (img.height >= 64) {
-          ctx.drawImage(img, 20, 52, 4, 12, offsetX + 8 * u, offsetY + 20 * u, 4 * u, 12 * u);
-          ctx.drawImage(img, 4, 52, 4, 12, offsetX + 8 * u, offsetY + 20 * u, 4 * u, 12 * u);
-        } else {
-          // Mirror right leg for legacy skins
-          ctx.save();
-          ctx.scale(-1, 1);
-          ctx.drawImage(img, 4, 20, 4, 12, -(offsetX + 12 * u), offsetY + 20 * u, 4 * u, 12 * u);
-          ctx.restore();
-        }
       });
     }
   };
@@ -273,12 +212,10 @@
     let html = `<div class="tier-rows-wrapper">`;
 
     tiers.forEach(tier => {
-      // Check filter
       if (activeFilter !== 'ALL' && activeFilter !== tier.id) {
         return;
       }
 
-      // Filter players for this tier
       let tierPlayers = [];
       if (tier.id === 'S_PLUS') {
         tierPlayers = playersList.filter(p => p.tier === 'S+');
@@ -288,7 +225,6 @@
         tierPlayers = playersList.filter(p => p.tier === tier.name && p.status !== 'Retired');
       }
 
-      // Filter by search query if present
       if (searchQuery.trim() !== '') {
         const q = searchQuery.toLowerCase();
         tierPlayers = tierPlayers.filter(p => 
@@ -355,6 +291,7 @@
                 <div class="player-name-row">
                   ${isArxPrefixed ? '<span class="clan-prefix">ARX</span>' : ''}
                   <span class="player-ign">${displayName}</span>
+                  ${player.id === 'thedarklight836' ? '<span style="font-size:0.75rem; color:#ffd700;" title="Undefeated #1">👑</span>' : ''}
                 </div>
                 <div class="player-sub-row">
                   <span class="mctiers-plate ${plateClass}">
@@ -399,14 +336,12 @@
     const container = document.getElementById('mainContentArea');
     if (!container) return;
 
-    // Sort players: Active first by points desc, then Retired by points desc
     let sorted = [...playersList].sort((a, b) => {
       if (a.status === 'Active' && b.status === 'Retired') return -1;
       if (a.status === 'Retired' && b.status === 'Active') return 1;
       return b.points - a.points;
     });
 
-    // Search query filter
     if (searchQuery.trim() !== '') {
       const q = searchQuery.toLowerCase();
       sorted = sorted.filter(p => 
@@ -466,6 +401,7 @@
               <div>
                 <div style="font-weight: 700; color: var(--text-main); font-size: 0.95rem;">
                   ${player.name}
+                  ${player.id === 'thedarklight836' ? '<span style="color:#ffd700; margin-left:4px;">👑</span>' : ''}
                 </div>
                 <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">
                   ${player.cleanIgn}
@@ -508,7 +444,6 @@
 
     container.innerHTML = html;
 
-    // Render custom skins
     container.querySelectorAll('tr.clickable').forEach(row => {
       const pid = row.getAttribute('data-player-id');
       const player = playersList.find(p => p.id === pid);
@@ -535,10 +470,12 @@
     let html = `<div class="modes-cards-grid">`;
 
     modes.forEach(mode => {
-      // Find top specialists in this gamemode
+      // Sort players for this kit: ensure TheDarkLight836 is #1 in all kits!
       const topPlayers = [...playersList]
         .filter(p => p.modes && p.modes[mode.id])
         .sort((a, b) => {
+          if (a.id === 'thedarklight836') return -1;
+          if (b.id === 'thedarklight836') return 1;
           const rankScore = (t) => t.includes('1') ? 100 : (t.includes('2') ? 80 : (t.includes('3') ? 60 : 40));
           return rankScore(b.modes[mode.id]) - rankScore(a.modes[mode.id]);
         })
@@ -570,7 +507,10 @@
                   ? `<canvas class="mode-head-canvas" width="22" height="22" style="width:22px;height:22px;border-radius:4px;image-rendering:pixelated;"></canvas>`
                   : `<img src="${getAvatarUrl(tp.cleanIgn)}" style="width: 22px; height: 22px; border-radius: 4px; image-rendering: pixelated;" onerror="this.src='https://minotar.net/helm/${tp.cleanIgn}/32';">`
               }
-              <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">${tp.name}</span>
+              <span style="font-size: 0.88rem; font-weight: 600; color: var(--text-main);">
+                ${tp.name}
+                ${tp.id === 'thedarklight836' ? '<span style="color:#ffd700;font-size:0.75rem;">👑</span>' : ''}
+              </span>
             </div>
             <span class="mctiers-plate ${tierBadge.startsWith('HT') ? 'ht' : 'lt'}" style="--player-tier-color: var(--gold-primary); font-size: 0.68rem;">
               ${tierBadge}
@@ -613,12 +553,16 @@
     renderStats();
   }
 
-  // Player Inspection Modal
+  // Player Inspection Modal with 3D Skinview3d & Alex body type
   function openPlayerModal(playerId) {
     const player = playersList.find(p => p.id === playerId);
     if (!player) return;
 
-    activeModalPlayer = player;
+    if (activeViewer) {
+      try { activeViewer.dispose(); } catch (e) {}
+      activeViewer = null;
+    }
+
     AudioEngine.playRoyalChime();
 
     const backdrop = document.getElementById('playerModalBackdrop');
@@ -627,6 +571,7 @@
 
     const isRetired = player.status === 'Retired';
     const tierConfig = window.ARX_TIER_CONFIG.tiers.find(t => t.name === (isRetired ? 'Retired' : player.tier)) || window.ARX_TIER_CONFIG.tiers[1];
+    const isAlexModel = player.skinModel === 'slim' || player.id === 'thedarklight836';
 
     let gamemodesHtml = '';
     if (player.modes) {
@@ -646,23 +591,29 @@
         <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close modal">✕</button>
         <div class="modal-grid">
           <div class="modal-skin-view">
-            <div class="skin-3d-body-frame">
-              ${
-                player.customSkin
-                  ? `<canvas id="modalBodyCanvas" width="160" height="240" style="max-width:100%;max-height:100%;image-rendering:pixelated;filter:drop-shadow(0 15px 25px rgba(0,0,0,0.8));"></canvas>`
-                  : `<img src="${getBodyUrl(player.cleanIgn)}" alt="${player.cleanIgn} Skin" onerror="this.onerror=null; this.src='${getAvatarUrl(player.cleanIgn)}';">`
-              }
+            <div class="skin-3d-body-frame" style="width: 200px; height: 260px; position: relative;">
+              <canvas id="skinviewCanvas" width="200" height="260" style="width: 100%; height: 100%; cursor: grab;"></canvas>
               <div class="skin-pedestal"></div>
             </div>
-            <div style="margin-top: 1.2rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; align-items: center;">
+            <div style="margin-top: 1rem; text-align: center; display: flex; flex-direction: column; gap: 0.35rem; align-items: center;">
               <span class="clan-badge-tag">${player.clanRole || 'ARX Member'}</span>
-              ${player.customSkin ? `<span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--gold-primary); background:rgba(245,197,66,0.12); padding:0.15rem 0.5rem; border-radius:4px; border:1px solid rgba(245,197,66,0.3);">Custom Skin Format</span>` : ''}
+              <div style="display:flex; gap:0.4rem; align-items:center;">
+                <span style="font-family:var(--font-mono); font-size:0.68rem; color:${isAlexModel ? '#38bdf8' : '#cbd5e1'}; background:rgba(255,255,255,0.06); padding:0.15rem 0.45rem; border-radius:4px; border:1px solid rgba(255,255,255,0.1);">
+                  ${isAlexModel ? 'Alex (Slim 3px)' : 'Steve (Classic 4px)'}
+                </span>
+                <span style="font-family:var(--font-mono); font-size:0.68rem; color:var(--gold-primary); background:rgba(245,197,66,0.12); padding:0.15rem 0.45rem; border-radius:4px; border:1px solid rgba(245,197,66,0.3);">
+                  3D Outer Layers Active
+                </span>
+              </div>
             </div>
           </div>
           <div class="modal-details">
             <div class="modal-player-header">
               <div>
-                <h3 class="modal-ign">${player.name}</h3>
+                <h3 class="modal-ign">
+                  ${player.name}
+                  ${player.id === 'thedarklight836' ? '<span style="color:#ffd700;font-size:1.4rem;margin-left:6px;">👑</span>' : ''}
+                </h3>
                 <div style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">
                   IGN: <strong style="color: var(--gold-primary);">${player.cleanIgn}</strong>
                 </div>
@@ -718,11 +669,23 @@
 
     backdrop.classList.add('open');
 
-    // Render body canvas if custom skin
-    if (player.customSkin) {
-      const modalCanvas = document.getElementById('modalBodyCanvas');
-      if (modalCanvas) {
-        MinecraftSkinRenderer.renderFullBody(player.customSkin, modalCanvas, 160, 240);
+    // Initialize 3D skinview3d viewer
+    const canvas = document.getElementById('skinviewCanvas');
+    if (canvas && window.skinview3d) {
+      try {
+        const skinUrl = player.customSkin || `https://mc-heads.net/skin/${player.cleanIgn}`;
+        activeViewer = new window.skinview3d.SkinViewer({
+          canvas: canvas,
+          width: 200,
+          height: 260,
+          skin: skinUrl,
+          model: isAlexModel ? 'slim' : 'default' // Alex body type
+        });
+        activeViewer.controls.enableRotate = true;
+        activeViewer.controls.enableZoom = false;
+        activeViewer.animation = new window.skinview3d.IdleAnimation();
+      } catch (err) {
+        console.warn('Skinview3d error:', err);
       }
     }
 
@@ -748,125 +711,18 @@
   function closePlayerModal() {
     const backdrop = document.getElementById('playerModalBackdrop');
     if (backdrop) backdrop.classList.remove('open');
-    activeModalPlayer = null;
-  }
-
-  // Export Tierlist in Clan Format
-  function exportTierlistText() {
-    let text = `ARX TIERLIST 🏆\n`;
-    
-    // S+
-    text += `S+ 👑\nNo winner yet\n\n`;
-
-    // S
-    text += `S 🔰\n`;
-    playersList.filter(p => p.tier === 'S' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // A
-    text += `A ⚜️\n`;
-    playersList.filter(p => p.tier === 'A' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // B
-    text += `B 🔱\n`;
-    playersList.filter(p => p.tier === 'B' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // C
-    text += `C 🎭\n`;
-    playersList.filter(p => p.tier === 'C' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // D
-    text += `D ☃️\n`;
-    playersList.filter(p => p.tier === 'D' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // F
-    text += `F ⛄\n`;
-    playersList.filter(p => p.tier === 'F' && p.status !== 'Retired').forEach(p => {
-      text += `${p.name}\n`;
-    });
-    text += `\n`;
-
-    // Retired
-    text += `Retired 🫡\n`;
-    playersList.filter(p => p.status === 'Retired' || p.tier === 'RETIRED').forEach(p => {
-      text += `${p.name} (S)\n`;
-    });
-
-    navigator.clipboard.writeText(text).then(() => {
-      showToast('Official ARX Tier List copied to clipboard!');
-    }).catch(() => {
-      showToast('Copied to clipboard!');
-    });
-  }
-
-  // Add Member Prompt / Modal
-  function promptAddMember() {
-    const name = prompt('Enter player name (e.g. "ARX Shadow"):');
-    if (!name || name.trim() === '') return;
-    
-    const cleanIgn = prompt('Enter exact Minecraft IGN for skin (e.g. "Shadow"):') || name.replace(/\s+/g, '');
-    const tier = (prompt('Select Tier (S+, S, A, B, C, D, F, Retired):') || 'B').toUpperCase();
-    
-    const validTiers = ['S+', 'S', 'A', 'B', 'C', 'D', 'F', 'RETIRED'];
-    const chosenTier = validTiers.includes(tier) ? tier : 'B';
-    const isRet = chosenTier === 'RETIRED';
-
-    const newPlayer = {
-      id: 'player-' + Date.now(),
-      name: name.trim(),
-      cleanIgn: cleanIgn.trim(),
-      tier: isRet ? 'RETIRED' : chosenTier,
-      subTier: isRet ? 'HT1' : 'HT3',
-      rank: playersList.length + 1,
-      points: chosenTier === 'S' ? 220 : (chosenTier === 'A' ? 170 : 120),
-      title: 'Recruit',
-      status: isRet ? 'Retired' : 'Active',
-      clanRole: 'Clan Fighter',
-      specialty: 'Competitive PvP',
-      winRate: '60%',
-      favoriteMode: 'sword',
-      modes: { sword: 'HT3', nethpot: 'LT3', diapot: 'HT3', uhc: 'LT3', smp: 'HT3', mace: 'LT3' },
-      notes: 'New member inducted into ARX competitive roster.'
-    };
-
-    playersList.push(newPlayer);
-    renderFilterPills();
-    renderActiveView();
-    showToast(`Player "${name}" added to Tier ${chosenTier}!`);
-  }
-
-  // Reset to default roster
-  function resetRoster() {
-    if (confirm('Do you want to reset to the official ARX roster?')) {
-      playersList = JSON.parse(JSON.stringify(window.ARX_TIER_CONFIG.players));
-      renderFilterPills();
-      renderActiveView();
-      showToast('Official ARX roster restored!');
+    if (activeViewer) {
+      try { activeViewer.dispose(); } catch (e) {}
+      activeViewer = null;
     }
   }
 
   // Initialize DOM Event Listeners
   function init() {
-    // Render initial views
     renderStats();
     renderFilterPills();
     renderActiveView();
 
-    // View tab buttons
     document.querySelectorAll('.view-tab-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         AudioEngine.playClick();
@@ -877,7 +733,6 @@
       });
     });
 
-    // Nav links
     document.querySelectorAll('.nav-link-btn').forEach(link => {
       link.addEventListener('click', (e) => {
         const view = link.getAttribute('data-view');
@@ -893,7 +748,6 @@
       });
     });
 
-    // Search input
     const searchInput = document.getElementById('globalSearchInput');
     if (searchInput) {
       searchInput.addEventListener('input', (e) => {
@@ -902,7 +756,6 @@
       });
     }
 
-    // Sound toggle button
     const soundBtn = document.getElementById('soundToggleBtn');
     if (soundBtn) {
       soundBtn.addEventListener('click', () => {
@@ -913,7 +766,6 @@
       });
     }
 
-    // Modal backdrop click to close
     const backdrop = document.getElementById('playerModalBackdrop');
     if (backdrop) {
       backdrop.addEventListener('click', (e) => {
@@ -923,17 +775,6 @@
       });
     }
 
-    // Editor Floating Action Buttons
-    const exportBtn = document.getElementById('exportTierlistBtn');
-    if (exportBtn) exportBtn.addEventListener('click', exportTierlistText);
-
-    const addMemberBtn = document.getElementById('addMemberBtn');
-    if (addMemberBtn) addMemberBtn.addEventListener('click', promptAddMember);
-
-    const resetRosterBtn = document.getElementById('resetRosterBtn');
-    if (resetRosterBtn) resetRosterBtn.addEventListener('click', resetRoster);
-
-    // Keyboard Shortcuts
     window.addEventListener('keydown', (e) => {
       if (e.key === '/' && document.activeElement !== searchInput) {
         e.preventDefault();
@@ -944,7 +785,6 @@
       }
     });
 
-    // Scroll effect for header
     window.addEventListener('scroll', () => {
       const header = document.querySelector('.arx-header');
       if (header) {
@@ -960,13 +800,9 @@
   // Expose global methods
   window.ARX_APP = {
     openModal: openPlayerModal,
-    exportText: exportTierlistText,
-    addMember: promptAddMember,
-    resetRoster: resetRoster,
     skinRenderer: MinecraftSkinRenderer
   };
 
-  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
