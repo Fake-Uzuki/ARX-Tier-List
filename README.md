@@ -83,10 +83,10 @@ Neoismindd (S)
 - **Triple View Layout**:
   - 🏆 **Tier List Rows**: Classic MCTiers / TierMaker tier rows with player chips.
   - 📊 **Ranked Leaderboard**: Complete 1-to-27 ranked standing with gold, silver, and bronze trophies, titles, and points.
-  - ⚔️ **Gamemodes Matrix**: Specific breakdown for Sword, Netherite Pot, Diamond Pot, UHC, SMP/Kit, and Mace.
+  - ⚔️ **Gamemodes Matrix**: Specific breakdown for Sword, Netherite Pot, Diamond Pot, UHC, SMP/Kit, and Spear Mace (TheDarkLight836 #1 in all kits).
+- **Interactive 3D Skinview3d Viewer**: Real-time 3D Minecraft skin model with Alex (slim 3px) body type and full outer layers (hat, jacket, sleeves, pants).
 - **Real-Time Live Search**: Instant search filtering (`/` keyboard shortcut).
 - **Clan Audio Engine**: Tactile sound effects powered by the Web Audio API synthesizer (no external sound files required) with sound toggle.
-- **Roster Simulator & Exporter**: In-browser tools to add members or export the tier list to formatted text with one click.
 - **Dual Compatibility**:
   - Run as a **Laravel 12+** web application (`php artisan serve`).
   - Run as a **Zero-Dependency Static Web App** (`public/index.html` or root redirect for GitHub Pages).
