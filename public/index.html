@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="it" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>ARX Clan | Official Minecraft PvP Tier List</title>
+  <meta name="description" content="Official Minecraft PvP Tier List for clan ARX. Inspired by MCTiers standards and customized with royal crown gold and crimson aesthetics.">
+  <link rel="icon" type="image/jpeg" href="images/arx_logo.jpg">
+  
+  <!-- Preconnect to Minecraft Avatar API -->
+  <link rel="preconnect" href="https://mc-heads.net">
+  <link rel="preconnect" href="https://minotar.net">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/arx-tierlist.css">
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="arx-header">
+    <div class="nav-container">
+      <a href="#" class="brand-wrapper">
+        <div class="brand-logo-frame">
+          <img src="images/arx_logo.jpg" alt="ARX Clan Logo" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'44\' height=\'44\'><rect width=\'44\' height=\'44\' fill=\'%2307070a\'/><text x=\'50%25\' y=\'65%25\' font-size=\'22\' text-anchor=\'middle\' fill=\'%23f5c542\'>👑</text></svg>';">
+        </div>
+        <div class="brand-titles">
+          <span class="brand-name">ARX TIERS</span>
+          <span class="brand-sub">Minecraft PvP Syndicate</span>
+        </div>
+      </a>
+
+      <nav class="nav-menu">
+        <button class="nav-link-btn active" data-view="tierlist">
+          <span>🏆</span> Tier List
+        </button>
+        <button class="nav-link-btn" data-view="leaderboard">
+          <span>📊</span> Classifica
+        </button>
+        <button class="nav-link-btn" data-view="gamemodes">
+          <span>⚔️</span> Modalità
+        </button>
+      </nav>
+
+      <div class="header-actions">
+        <div class="search-bar-trigger">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
+          <input type="text" id="globalSearchInput" placeholder="Cerca player clan..." autocomplete="off">
+          <kbd class="kbd-shortcut">/</kbd>
+        </div>
+        <button class="icon-btn" id="soundToggleBtn" title="Audio Effetti">🔊</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Clan Banner -->
+  <section class="clan-hero-banner">
+    <div class="banner-glass-card">
+      <div class="banner-emblem">
+        <img src="images/arx_logo.jpg" alt="ARX Crown" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'120\' height=\'120\'><rect width=\'120\' height=\'120\' fill=\'%2307070a\'/><text x=\'50%25\' y=\'65%25\' font-size=\'50\' text-anchor=\'middle\' fill=\'%23f5c542\'>👑</text></svg>';">
+        <div class="crown-badge-float">👑</div>
+      </div>
+      <div class="banner-info">
+        <div class="clan-badge-tag">
+          <span>👑</span> CLAN EXCLUSIVE • MCTIERS STANDARD
+        </div>
+        <h1 class="banner-title">ARX CLAN TIERLIST</h1>
+        <p class="banner-desc">
+          Graduatoria ufficiale dei campioni del clan <strong>ARX</strong>. Calibrata sui canoni competitivi di MCTiers.it e decorata con l'estetica della corona d'oro imperiale e rubini.
+        </p>
+      </div>
+      <div class="banner-stats">
+        <div class="stat-item">
+          <span class="stat-label">Membri Attivi</span>
+          <span class="stat-value gold" id="statActive">24</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Leggende Retired</span>
+          <span class="stat-value" id="statRetired">3</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">Campioni S-Tier</span>
+          <span class="stat-value gold" id="statSTier">7</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-label">S+ Sovereign</span>
+          <span class="stat-value" style="color: #ffd700; font-size: 0.9rem;">Vacante 👑</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- View Switcher & Tier Filter Pills -->
+  <section class="controls-container">
+    <div class="view-tabs">
+      <button class="view-tab-btn active" data-view="tierlist">
+        <span>🏆</span> Tier List Rows
+      </button>
+      <button class="view-tab-btn" data-view="leaderboard">
+        <span>📊</span> Leaderboard Classifica
+      </button>
+      <button class="view-tab-btn" data-view="gamemodes">
+        <span>⚔️</span> Modalità PvP
+      </button>
+    </div>
+
+    <div class="tier-pills-filter" id="tierFilterPills">
+      <!-- Generated via JS -->
+    </div>
+  </section>
+
+  <!-- Main Content Area -->
+  <main class="tierlist-main-section" id="mainContentArea">
+    <!-- Rendered dynamically via arx-app.js -->
+  </main>
+
+  <!-- Floating Editor / Action Bar -->
+  <div class="editor-floating-bar">
+    <button class="editor-btn primary" id="exportTierlistBtn" title="Esporta Tier List in testo">
+      <span>📋</span> Esporta Testo
+    </button>
+    <button class="editor-btn ghost" id="addMemberBtn" title="Aggiungi nuovo membro">
+      <span>➕</span> Aggiungi Membro
+    </button>
+    <button class="editor-btn ghost" id="resetRosterBtn" title="Ripristina roster iniziale">
+      <span>🔄</span> Reset
+    </button>
+  </div>
+
+  <!-- Player 3D Skin Modal Backdrop -->
+  <div class="modal-backdrop" id="playerModalBackdrop">
+    <div id="playerModalContent">
+      <!-- Populated dynamically via openPlayerModal() -->
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div class="toast-notice" id="toastNotice">
+    <span>👑</span> <span>Notifica ARX</span>
+  </div>
+
+  <!-- Footer -->
+  <footer class="arx-footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="brand-logo-frame" style="width: 34px; height: 34px;">
+          <img src="images/arx_logo.jpg" alt="ARX">
+        </div>
+        <div>
+          <span style="font-family: var(--font-display); font-weight: 700; color: var(--gold-primary);">ARX Clan</span>
+          <span style="color: var(--text-muted); font-size: 0.82rem; margin-left: 0.5rem;">Crown the Victorious. Settle for Nothing Less.</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        Ispirato allo standard di <a href="https://www.mctiers.it/" target="_blank" rel="noopener noreferrer">MCTiers.it</a> • Skin fornite da <a href="https://mc-heads.net/" target="_blank" rel="noopener noreferrer">mc-heads.net</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/arx-data.js"></script>
+  <script src="js/arx-app.js"></script>
+</body>
+</html>
