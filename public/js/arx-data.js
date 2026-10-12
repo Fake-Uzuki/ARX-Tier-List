@@ -120,7 +120,7 @@ const ARX_TIER_CONFIG = {
       glow: "rgba(212, 175, 55, 0.25)",
       badgeCode: "VET",
       isHatched: true,
-      description: "Former champions who have stepped down from active roster. Eternal legends."
+      description: "Former champions who have stepped down from the active roster. Eternal legends."
     }
   ],
 
@@ -144,7 +144,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT1",
       rank: 1,
       points: 268,
-      title: "Maestro",
+      title: "Grandmaster",
       status: "Active",
       clanRole: "Champion",
       specialty: "Sword & Netherite Pot",
@@ -161,7 +161,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT1",
       rank: 2,
       points: 262,
-      title: "Maestro",
+      title: "Grandmaster",
       status: "Active",
       clanRole: "Champion",
       specialty: "SMP & Sword",
@@ -171,22 +171,22 @@ const ARX_TIER_CONFIG = {
       notes: "Keyboard & mouse specialist with blistering reflex timing."
     },
     {
-      id: "arx-darklight",
-      name: "ARX DarkLight",
-      cleanIgn: "DarkLight",
-      displayPrefix: "ARX",
+      id: "thedarklight836",
+      name: "TheDarkLight836",
+      cleanIgn: "TheDarkLight836",
+      customSkin: "skins/TheDarkLight836.png",
       tier: "S",
       subTier: "HT1",
       rank: 3,
       points: 256,
-      title: "Maestro",
+      title: "Grandmaster",
       status: "Active",
       clanRole: "Champion",
       specialty: "Diamond Pot & UHC",
       winRate: "85%",
       favoriteMode: "diapot",
       modes: { sword: "LT1", nethpot: "HT1", diapot: "HT1", uhc: "HT1", smp: "HT2", mace: "HT2" },
-      notes: "Clan pillar with decisive counter-attack execution."
+      notes: "Clan pillar with decisive counter-attack execution and signature custom skin."
     },
     {
       id: "hydeeeee",
@@ -196,7 +196,7 @@ const ARX_TIER_CONFIG = {
       subTier: "LT1",
       rank: 4,
       points: 248,
-      title: "Maestro",
+      title: "Master",
       status: "Active",
       clanRole: "Champion",
       specialty: "Netherite Pot",
@@ -213,7 +213,7 @@ const ARX_TIER_CONFIG = {
       subTier: "LT1",
       rank: 5,
       points: 242,
-      title: "Maestro",
+      title: "Master",
       status: "Active",
       clanRole: "Champion",
       specialty: "Sword & UHC",
@@ -230,7 +230,7 @@ const ARX_TIER_CONFIG = {
       subTier: "LT1",
       rank: 6,
       points: 238,
-      title: "Maestro",
+      title: "Master",
       status: "Active",
       clanRole: "Champion",
       specialty: "SMP & Mace",
@@ -247,14 +247,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT1",
       rank: 7,
       points: 232,
-      title: "Maestro",
+      title: "Master",
       status: "Active",
       clanRole: "Champion",
       specialty: "Diamond Pot",
       winRate: "80%",
       favoriteMode: "diapot",
       modes: { sword: "LT1", nethpot: "HT2", diapot: "LT1", uhc: "LT2", smp: "HT2", mace: "LT2" },
-      notes: "Relentless aggression that breaks opponents' rhythm."
+      notes: "Relentless aggression that breaks opponents' defensive rhythm."
     },
 
     // A Tier ⚜️
@@ -267,7 +267,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT2",
       rank: 8,
       points: 198,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "Sword & Bow / UHC",
@@ -284,14 +284,14 @@ const ARX_TIER_CONFIG = {
       subTier: "HT2",
       rank: 9,
       points: 194,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "Netherite Pot",
       winRate: "76%",
       favoriteMode: "nethpot",
       modes: { sword: "HT2", nethpot: "HT2", diapot: "LT2", uhc: "LT2", smp: "HT2", mace: "LT3" },
-      notes: "Rapid pot cycling and pressure play."
+      notes: "Rapid pot cycling and relentless pressure play."
     },
     {
       id: "enigma",
@@ -301,7 +301,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT2",
       rank: 10,
       points: 188,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "SMP / Kit",
@@ -318,7 +318,7 @@ const ARX_TIER_CONFIG = {
       subTier: "LT2",
       rank: 11,
       points: 182,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "Diamond Pot",
@@ -335,7 +335,7 @@ const ARX_TIER_CONFIG = {
       subTier: "LT2",
       rank: 12,
       points: 178,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "Sword Duel",
@@ -352,14 +352,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT2",
       rank: 13,
       points: 172,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "UHC & Rodding",
       winRate: "71%",
       favoriteMode: "uhc",
       modes: { sword: "LT2", nethpot: "HT3", diapot: "LT2", uhc: "HT2", smp: "LT3", mace: "LT3" },
-      notes: "Exceptional rod combo strings and positional control."
+      notes: "Exceptional rod combo strings and positional map control."
     },
     {
       id: "arx-jemi",
@@ -370,14 +370,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT2",
       rank: 14,
       points: 168,
-      title: "Asso",
+      title: "Ace",
       status: "Active",
       clanRole: "Vanguard",
       specialty: "Netherite Pot",
       winRate: "70%",
       favoriteMode: "nethpot",
       modes: { sword: "HT3", nethpot: "LT2", diapot: "LT2", uhc: "LT3", smp: "HT3", mace: "HT2" },
-      notes: "Aggressive frontliner in ARX scrims."
+      notes: "Fierce aggressive frontliner in ARX clan scrims."
     },
 
     // B Tier 🔱
@@ -390,7 +390,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT3",
       rank: 15,
       points: 146,
-      title: "Specialista",
+      title: "Specialist",
       status: "Active",
       clanRole: "Gladiator",
       specialty: "Sword & Shield",
@@ -407,14 +407,14 @@ const ARX_TIER_CONFIG = {
       subTier: "HT3",
       rank: 16,
       points: 140,
-      title: "Specialista",
+      title: "Specialist",
       status: "Active",
       clanRole: "Gladiator",
       specialty: "Netherite Pot",
       winRate: "65%",
       favoriteMode: "nethpot",
       modes: { sword: "HT3", nethpot: "HT3", diapot: "LT3", uhc: "HT4", smp: "LT3", mace: "LT3" },
-      notes: "Consistent pot mechanics with rising potential."
+      notes: "Consistent pot mechanics with rising competitive potential."
     },
     {
       id: "endeirmain",
@@ -424,14 +424,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT3",
       rank: 17,
       points: 134,
-      title: "Specialista",
+      title: "Specialist",
       status: "Active",
       clanRole: "Gladiator",
       specialty: "SMP & Shield",
       winRate: "63%",
       favoriteMode: "smp",
       modes: { sword: "LT3", nethpot: "LT3", diapot: "HT4", uhc: "LT3", smp: "LT3", mace: "HT4" },
-      notes: "Great team player in clan teamfights."
+      notes: "Great team player and communicator in clan teamfights."
     },
     {
       id: "n3tjamesss",
@@ -441,14 +441,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT3",
       rank: 18,
       points: 128,
-      title: "Specialista",
+      title: "Specialist",
       status: "Active",
       clanRole: "Gladiator",
       specialty: "Diamond Pot",
       winRate: "62%",
       favoriteMode: "diapot",
       modes: { sword: "LT3", nethpot: "LT3", diapot: "LT3", uhc: "LT3", smp: "HT4", mace: "LT4" },
-      notes: "Sharp strafing and evasion."
+      notes: "Sharp strafing and high agility evasion."
     },
     {
       id: "m1yamots",
@@ -458,14 +458,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT3",
       rank: 19,
       points: 122,
-      title: "Specialista",
+      title: "Specialist",
       status: "Active",
       clanRole: "Gladiator",
       specialty: "Sword Duel",
       winRate: "61%",
       favoriteMode: "sword",
       modes: { sword: "LT3", nethpot: "HT4", diapot: "LT3", uhc: "HT4", smp: "LT4", mace: "LT4" },
-      notes: "Samurai-inspired precision timing."
+      notes: "Samurai-inspired precision timing and spacing."
     },
 
     // C Tier 🎭
@@ -477,14 +477,14 @@ const ARX_TIER_CONFIG = {
       subTier: "HT4",
       rank: 20,
       points: 98,
-      title: "Cadetto",
+      title: "Cadet",
       status: "Active",
       clanRole: "Warden",
       specialty: "Sword",
       winRate: "55%",
       favoriteMode: "sword",
       modes: { sword: "HT4", nethpot: "LT4", diapot: "HT4", uhc: "LT4", smp: "LT4", mace: "HT5" },
-      notes: "Solid basics; refining pot rotation under pressure."
+      notes: "Solid basics; actively refining pot rotation under pressure."
     },
     {
       id: "olzychxd",
@@ -494,14 +494,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT4",
       rank: 21,
       points: 92,
-      title: "Cadetto",
+      title: "Cadet",
       status: "Active",
       clanRole: "Warden",
       specialty: "SMP",
       winRate: "54%",
       favoriteMode: "smp",
       modes: { sword: "LT4", nethpot: "LT4", diapot: "LT4", uhc: "HT5", smp: "HT4", mace: "LT5" },
-      notes: "Steady and dedicated training regiment."
+      notes: "Steady improvement and dedicated training regiment."
     },
 
     // D Tier ☃️
@@ -513,14 +513,14 @@ const ARX_TIER_CONFIG = {
       subTier: "HT5",
       rank: 22,
       points: 68,
-      title: "Novizio",
+      title: "Novice",
       status: "Active",
       clanRole: "Initiate",
       specialty: "Sword Duel",
       winRate: "48%",
       favoriteMode: "sword",
       modes: { sword: "HT5", nethpot: "HT5", diapot: "LT5", uhc: "LT5", smp: "HT5", mace: "LT5" },
-      notes: "Recent recruit showing steep learning curve."
+      notes: "Promising recruit showing a steep learning curve."
     },
     {
       id: "denbalddacow",
@@ -530,14 +530,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT5",
       rank: 23,
       points: 62,
-      title: "Novizio",
+      title: "Novice",
       status: "Active",
       clanRole: "Initiate",
       specialty: "Diamond Pot",
       winRate: "46%",
       favoriteMode: "diapot",
       modes: { sword: "LT5", nethpot: "LT5", diapot: "HT5", uhc: "LT5", smp: "LT5", mace: "LT5" },
-      notes: "Active in clan scrims; practicing shield breaks."
+      notes: "Active in clan scrims; practicing shield breaks and timing."
     },
 
     // F Tier ⛄
@@ -549,14 +549,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT5",
       rank: 24,
       points: 38,
-      title: "Recluta",
+      title: "Rookie",
       status: "Active",
       clanRole: "Recruit",
       specialty: "Fundamentals",
       winRate: "40%",
       favoriteMode: "sword",
       modes: { sword: "LT5", nethpot: "LT5", diapot: "LT5", uhc: "LT5", smp: "LT5", mace: "LT5" },
-      notes: "Newest member beginning clan training."
+      notes: "Newest member beginning structured clan training."
     },
     {
       id: "zach",
@@ -566,14 +566,14 @@ const ARX_TIER_CONFIG = {
       subTier: "LT5",
       rank: 25,
       points: 32,
-      title: "Recluta",
+      title: "Rookie",
       status: "Active",
       clanRole: "Recruit",
       specialty: "Fundamentals",
       winRate: "38%",
       favoriteMode: "sword",
       modes: { sword: "LT5", nethpot: "LT5", diapot: "LT5", uhc: "LT5", smp: "LT5", mace: "LT5" },
-      notes: "Gaining experience through weekly clan practice."
+      notes: "Gaining valuable combat experience through weekly clan practice."
     },
 
     // Retired 🫡
@@ -587,7 +587,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT1",
       rank: null,
       points: 254,
-      title: "Leggenda d'Onore",
+      title: "Honorary Legend",
       status: "Retired",
       clanRole: "Clan Veteran",
       specialty: "Sword & Netherite Pot",
@@ -607,7 +607,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT1",
       rank: null,
       points: 248,
-      title: "Leggenda d'Onore",
+      title: "Honorary Legend",
       status: "Retired",
       clanRole: "Clan Veteran",
       specialty: "Diamond Pot & UHC",
@@ -627,7 +627,7 @@ const ARX_TIER_CONFIG = {
       subTier: "HT1",
       rank: null,
       points: 244,
-      title: "Leggenda d'Onore",
+      title: "Honorary Legend",
       status: "Retired",
       clanRole: "Clan Veteran",
       specialty: "SMP & Sword",
