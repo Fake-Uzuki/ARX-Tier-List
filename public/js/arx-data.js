@@ -131,18 +131,37 @@ const ARX_TIER_CONFIG = {
     { id: "diapot", name: "Diamond Pot", icon: "💎", desc: "Classic Diamond Pot PvP" },
     { id: "uhc", name: "UHC", icon: "🍎", desc: "Golden Apple & Rod/Bow Tactics" },
     { id: "smp", name: "SMP / Kit", icon: "🛡️", desc: "Totem, Crystal & Survival PvP" },
-    { id: "mace", name: "Mace / 1.21", icon: "🔨", desc: "Wind Charge & Smash Attacks" }
+    { id: "mace", name: "Spear Mace", icon: "🔱", desc: "1.21 Spear & Mace Wind Burst Combat" }
   ],
 
   players: [
     // S Tier 🔰
+    {
+      id: "thedarklight836",
+      name: "TheDarkLight836",
+      cleanIgn: "TheDarkLight836",
+      customSkin: "skins/TheDarkLight836.png",
+      skinModel: "slim", // Alex body type
+      tier: "S",
+      subTier: "HT1",
+      rank: 1,
+      points: 295,
+      title: "Grandmaster",
+      status: "Active",
+      clanRole: "Supreme Champion",
+      specialty: "Undefeated #1 In All Kits • Sword, Pot, UHC, SMP, Spear Mace",
+      winRate: "97%",
+      favoriteMode: "mace",
+      modes: { sword: "HT1", nethpot: "HT1", diapot: "HT1", uhc: "HT1", smp: "HT1", mace: "HT1" },
+      notes: "Undisputed #1 rank across all PvP kits in ARX. Equipped with signature custom Alex-model skin with full 3D layers."
+    },
     {
       id: "jeplicc",
       name: "Jeplicc",
       cleanIgn: "Jeplicc",
       tier: "S",
       subTier: "HT1",
-      rank: 1,
+      rank: 2,
       points: 268,
       title: "Grandmaster",
       status: "Active",
@@ -159,7 +178,7 @@ const ARX_TIER_CONFIG = {
       cleanIgn: "noctisonkbm",
       tier: "S",
       subTier: "HT1",
-      rank: 2,
+      rank: 3,
       points: 262,
       title: "Grandmaster",
       status: "Active",
@@ -169,24 +188,6 @@ const ARX_TIER_CONFIG = {
       favoriteMode: "sword",
       modes: { sword: "HT1", nethpot: "HT1", diapot: "LT1", uhc: "HT1", smp: "HT1", mace: "HT1" },
       notes: "Keyboard & mouse specialist with blistering reflex timing."
-    },
-    {
-      id: "thedarklight836",
-      name: "TheDarkLight836",
-      cleanIgn: "TheDarkLight836",
-      customSkin: "skins/TheDarkLight836.png",
-      tier: "S",
-      subTier: "HT1",
-      rank: 3,
-      points: 256,
-      title: "Grandmaster",
-      status: "Active",
-      clanRole: "Champion",
-      specialty: "Diamond Pot & UHC",
-      winRate: "85%",
-      favoriteMode: "diapot",
-      modes: { sword: "LT1", nethpot: "HT1", diapot: "HT1", uhc: "HT1", smp: "HT2", mace: "HT2" },
-      notes: "Clan pillar with decisive counter-attack execution and signature custom skin."
     },
     {
       id: "hydeeeee",
@@ -233,11 +234,11 @@ const ARX_TIER_CONFIG = {
       title: "Master",
       status: "Active",
       clanRole: "Champion",
-      specialty: "SMP & Mace",
+      specialty: "SMP & Spear Mace",
       winRate: "81%",
       favoriteMode: "mace",
       modes: { sword: "HT2", nethpot: "LT1", diapot: "LT2", uhc: "HT2", smp: "LT1", mace: "HT1" },
-      notes: "Unpredictable 1.21 mace drops with lethal accuracy."
+      notes: "Unpredictable 1.21 spear mace drops with lethal accuracy."
     },
     {
       id: "cursedxaii",
