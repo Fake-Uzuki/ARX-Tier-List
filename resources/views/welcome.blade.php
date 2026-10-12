@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" dir="ltr">
+<html lang="en" dir="ltr">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -34,20 +34,20 @@
           <span>🏆</span> Tier List
         </button>
         <button class="nav-link-btn" data-view="leaderboard">
-          <span>📊</span> Classifica
+          <span>📊</span> Leaderboard
         </button>
         <button class="nav-link-btn" data-view="gamemodes">
-          <span>⚔️</span> Modalità
+          <span>⚔️</span> Gamemodes
         </button>
       </nav>
 
       <div class="header-actions">
         <div class="search-bar-trigger">
           <svg width="15" height="15" fill="currentColor" viewBox="0 0 256 256"><path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path></svg>
-          <input type="text" id="globalSearchInput" placeholder="Cerca player clan..." autocomplete="off">
+          <input type="text" id="globalSearchInput" placeholder="Search clan member..." autocomplete="off">
           <kbd class="kbd-shortcut">/</kbd>
         </div>
-        <button class="icon-btn" id="soundToggleBtn" title="Audio Effetti">🔊</button>
+        <button class="icon-btn" id="soundToggleBtn" title="Sound Effects">🔊</button>
       </div>
     </div>
   </header>
@@ -65,25 +65,25 @@
         </div>
         <h1 class="banner-title">ARX CLAN TIERLIST</h1>
         <p class="banner-desc">
-          Graduatoria ufficiale dei campioni del clan <strong>ARX</strong>. Calibrata sui canoni competitivi di MCTiers.it e decorata con l'estetica della corona d'oro imperiale e rubini.
+          Official competitive ranking of <strong>ARX</strong> champions. Calibrated to MCTiers.it competitive standards and crowned with royal imperial gold and ruby aesthetics.
         </p>
       </div>
       <div class="banner-stats">
         <div class="stat-item">
-          <span class="stat-label">Membri Attivi</span>
+          <span class="stat-label">Active Roster</span>
           <span class="stat-value gold" id="statActive">24</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Leggende Retired</span>
+          <span class="stat-label">Retired Legends</span>
           <span class="stat-value" id="statRetired">3</span>
         </div>
         <div class="stat-item">
-          <span class="stat-label">Campioni S-Tier</span>
+          <span class="stat-label">S-Tier Champions</span>
           <span class="stat-value gold" id="statSTier">7</span>
         </div>
         <div class="stat-item">
           <span class="stat-label">S+ Sovereign</span>
-          <span class="stat-value" style="color: #ffd700; font-size: 0.9rem;">Vacante 👑</span>
+          <span class="stat-value" style="color: #ffd700; font-size: 0.9rem;">Vacant 👑</span>
         </div>
       </div>
     </div>
@@ -96,10 +96,10 @@
         <span>🏆</span> Tier List Rows
       </button>
       <button class="view-tab-btn" data-view="leaderboard">
-        <span>📊</span> Leaderboard Classifica
+        <span>📊</span> Ranked Leaderboard
       </button>
       <button class="view-tab-btn" data-view="gamemodes">
-        <span>⚔️</span> Modalità PvP
+        <span>⚔️</span> PvP Gamemodes
       </button>
     </div>
 
@@ -115,13 +115,13 @@
 
   <!-- Floating Editor / Action Bar -->
   <div class="editor-floating-bar">
-    <button class="editor-btn primary" id="exportTierlistBtn" title="Esporta Tier List in testo">
-      <span>📋</span> Esporta Testo
+    <button class="editor-btn primary" id="exportTierlistBtn" title="Export Tier List as text">
+      <span>📋</span> Export Text
     </button>
-    <button class="editor-btn ghost" id="addMemberBtn" title="Aggiungi nuovo membro">
-      <span>➕</span> Aggiungi Membro
+    <button class="editor-btn ghost" id="addMemberBtn" title="Add new clan member">
+      <span>➕</span> Add Member
     </button>
-    <button class="editor-btn ghost" id="resetRosterBtn" title="Ripristina roster iniziale">
+    <button class="editor-btn ghost" id="resetRosterBtn" title="Reset official roster">
       <span>🔄</span> Reset
     </button>
   </div>
@@ -135,7 +135,7 @@
 
   <!-- Floating Toast Notification -->
   <div class="toast-notice" id="toastNotice">
-    <span>👑</span> <span>Notifica ARX</span>
+    <span>👑</span> <span>ARX Notification</span>
   </div>
 
   <!-- Footer -->
@@ -151,7 +151,7 @@
         </div>
       </div>
       <div class="footer-meta">
-        Ispirato allo standard di <a href="https://www.mctiers.it/" target="_blank" rel="noopener noreferrer">MCTiers.it</a> • Skin fornite da <a href="https://mc-heads.net/" target="_blank" rel="noopener noreferrer">mc-heads.net</a>
+        Inspired by <a href="https://www.mctiers.it/" target="_blank" rel="noopener noreferrer">MCTiers.it</a> standards • Minecraft skins powered by <a href="https://mc-heads.net/" target="_blank" rel="noopener noreferrer">mc-heads.net</a> & local skin loader
       </div>
     </div>
   </footer>
