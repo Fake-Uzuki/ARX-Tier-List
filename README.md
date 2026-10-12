@@ -1,58 +1,135 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 👑 ARX Clan | Official Minecraft PvP Tier List
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/arx_logo.jpg" alt="ARX Clan Crown Logo" width="220" style="border-radius: 16px; box-shadow: 0 0 30px rgba(245, 197, 66, 0.4);"/>
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>"Crown the Victorious. Settle for Nothing Less."</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+  <img src="https://img.shields.io/badge/Clan-ARX-F5C542?style=for-the-badge&logo=minecraft&logoColor=black" alt="Clan ARX"/>
+  <img src="https://img.shields.io/badge/Reference-MCTiers.it-C1121F?style=for-the-badge" alt="MCTiers Reference"/>
+  <img src="https://img.shields.io/badge/Style-Royal_Gold_%26_Rubies-FFD700?style=for-the-badge" alt="Gold & Rubies"/>
+  <img src="https://img.shields.io/badge/Status-Active_Roster-10B981?style=for-the-badge" alt="Active Roster"/>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🏆 Overview
 
-## Learning Laravel
+The **ARX Clan Tier List** is the official competitive ranking portal for the **ARX** Minecraft PvP syndicate. Built strictly referencing the design and competitive hierarchy of [MCTiers.it](https://www.mctiers.it/), customized with the clan's royal crown emblem, imperial burnished gold, and ruby accents.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ⚜️ Official Clan Tier List Hierarchy
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+```
+ARX TIERLIST 🏆
+S+ 👑
+No winner yet
 
-## Agentic Development
+S 🔰
+Jeplicc
+noctisonkbm
+ARX DarkLight
+Hydeeeee
+Mactyu
+Shekkyyy
+CursedXaii
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+A ⚜️
+ARX Bowiee
+zObxx
+Enigma
+OrdinaryGuy
+Rocknarok
+Voider
+ARX Jemi
 
-```bash
-composer require laravel/boost --dev
+B 🔱
+ARX meme50766
+Vielend
+Endeirmain
+n3tjamesss
+M1yamots
 
-php artisan boost:install
+C 🎭
+Meonyon
+OlzychXD
+
+D ☃️
+Rizu 63rd
+DenBaldDaCow
+
+F ⛄
+Alderf
+Zach
+
+Retired 🫡
+J3sterbox (S)
+ColdVerdictt (S)
+Neoismindd (S)
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+---
 
-## Contributing
+## ✨ Features & Architecture
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- **MCTiers-Standard Badges**: Authentic High Tier (`HT`) and Low Tier (`LT`) plate badges with top/bottom color bar accents.
+- **Retired Legends Badge**: Custom diagonal hatch pattern displaying historical peak rank (e.g. `(S) VET`).
+- **Interactive 3D Skin Inspection**: Click any member card to inspect their full Minecraft body render (via `mc-heads.net`), winrate, combat profile, and gamemode masteries.
+- **Triple View Layout**:
+  - 🏆 **Tier List Rows**: Classic MCTiers / TierMaker tier rows with player chips.
+  - 📊 **Ranked Leaderboard**: Complete 1-to-27 ranked standing with gold, silver, and bronze trophies, titles, and points.
+  - ⚔️ **Gamemodes Matrix**: Specific breakdown for Sword, Netherite Pot, Diamond Pot, UHC, SMP/Kit, and Mace.
+- **Real-Time Live Search**: Instant search filtering (`/` keyboard shortcut).
+- **Clan Audio Engine**: Tactile sound effects powered by the Web Audio API synthesizer (no external sound files required) with sound toggle.
+- **Roster Simulator & Exporter**: In-browser tools to add members or export the tier list to formatted text with one click.
+- **Dual Compatibility**:
+  - Run as a **Laravel 12+** web application (`php artisan serve`).
+  - Run as a **Zero-Dependency Static Web App** (`public/index.html` or root redirect for GitHub Pages).
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🚀 Getting Started
 
-## Security Vulnerabilities
+### Option 1: Standalone Web App
+Simply open `public/index.html` in any modern web browser or serve via any static web server:
+```bash
+# Using Python
+python -m http.server 8000
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Or open public/index.html directly in your browser
+```
 
-## License
+### Option 2: Laravel Development Server
+```bash
+# Serve via PHP
+php artisan serve
+# Open http://127.0.0.1:8000
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+
+## 🎨 Color Palette Reference
+
+| Token | Hex | Role |
+| :--- | :--- | :--- |
+| **Imperial Gold** | `#F5C542` / `#FFD700` | Clan Branding, Crown Trim, S-Tier Glow |
+| **Obsidian Dark** | `#07070A` / `#0D0D12` | Gritty Background & High-contrast Panels |
+| **Ruby Jewel** | `#E63946` / `#C1121F` | Accent Jewels & Alerts |
+| **Royal Purple** | `#C084FC` | Tier A (Knights) |
+| **Trident Cyan** | `#38BDF8` | Tier B (Gladiators) |
+| **Emerald Jade** | `#34D399` | Tier C (Wardens) |
+| **Frost Slate** | `#94A3B8` | Tier D (Initiates) |
+| **Ash Crimson** | `#F87171` | Tier F (Recruits) |
+
+---
+
+## 📜 Credits
+
+- **Clan**: ARX Syndicate
+- **Standards & Inspiration**: [MCTiers.it](https://www.mctiers.it/)
+- **Minecraft Skin Renders**: [mc-heads.net](https://mc-heads.net/) & [Minotar](https://minotar.net/)
